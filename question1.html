@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>question1</title>
+</head>
+<body>
+    <script>
+//        有一个字符串abcd-ef-gh，请用JS将它处理成gh&ef&abcd
+        var str = 'abcd-ef-gh';
+        var arr1 = str.split('-');
+        var result = arr1.reverse().join('&');
+        alert(result);
+    </script>
+</body>
+</html>
