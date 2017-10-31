@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>question2</title>
+</head>
+<body onload="getTestLi()">
+    <ul id = 'test'>
+        <li>第一行</li>
+        <li>第二行</li>
+        <li>第三行</li>
+    </ul>
+    <script>
+//        编写JS函数实现单击id为test的列表中的li时，获取其内容。
+        function getTestLi() {
+            var
+                objUlLi = document.getElementById('test').getElementsByTagName('li');
+                for(i=0,l=objUlLi.length;i<l;i++){
+                    objUlLi[i].onclick=function () {
+                        alert(this.innerHTML);
+                    };
+                }
+        }
+    </script>
+</body>
+</html>
