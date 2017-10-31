@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="newsList">
+        <p class="a">1</p>
+        <p class="b">2</p>
+        <p class="c">3</p>
+    </div>
+    <script>
+//      找出id为newsList的HTML元素的下一个节点，并将其移动到newsList的最后
+        var ul = document.getElementById("newsList");
+        ul.appendChild(ul.firstElementChild);
+    </script>
+</body>
+</html>
