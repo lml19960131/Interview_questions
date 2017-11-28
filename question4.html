@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        function Foo(name) {
+            this.name = name;
+        }
+        Foo.prototype.alertName = function () {
+            alert(this.name);
+        };
+        var f = new Foo('lml');
+        f.printName = function () {
+            alert(this.name)
+        };
+        f.printName();
+        f.alertName();
+    </script>
+</body>
+</html>
