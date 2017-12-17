@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="div1" class="class1">
+        <div id="p1">懵不懵逼</div>
+        <div id="p2">懵逼2</div>
+    </div>
+    <div id="div2">
+        <div id="p3">懵逼3</div>
+        <div id="p4">懵逼4</div>
+        <div id="p5">懵逼5</div>
+        <div id="p6">懵逼6</div>
+    </div>
+
+    <script>
+        function bindEvent(elem, type, fn) {
+            elem.addEventListener(type, fn)
+        }
+        var p1= document.getElementById('p1');
+        var body= document.body;
+
+        bindEvent(p1, 'click', function (e) {
+            e.stopPropagation();//冒泡个J儿。
+            alert('一脸懵逼');
+        });
+        bindEvent(body, 'click', function (e) {
+            alert('一起懵逼');
+        })
+    </script>
+</body>
+</html>
