@@ -2,22 +2,100 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>作用域和闭包</title>
 </head>
 <body>
     <script>
-        function Foo(name) {
-            this.name = name;
+        //变量提升以及执行上下文（由于现在ES6中使用let和const的存在变量提升已经弱化）
+        console.log(a);
+        var a = 1;//这么写会被打死的哦，要先定义后执行
+
+        fn('lml');//函数、变量的声明会提前，但是赋值不会，赋值会用undefined占位
+        function fn(name) {
+            age = 21;
+            console.log(name ,age);
+            var age
         }
-        Foo.prototype.alertName = function () {
-            alert(this.name);
+        //console.log(fn1());//如果执行前面的代码会报错，因为函数表达式（匿名函数）不会提前。
+        var fn1 = function () {};
+
+
+        //针对this的说明：this在执行时才能确定，在定义时无法确定
+        var obj1 = {
+            name: 'lml',
+            fn: function () {
+                console.log(this.name)
+            }
         };
-        var f = new Foo('lml');
-        f.printName = function () {
-            alert(this.name)
-        };
-        f.printName();
-        f.alertName();
+        obj1.fn();
+        obj1.fn.call({name: 'xxs'});
+
+
+        //函数作用域与全局作用域
+        if(true){
+            var name = 'lml'
+        }
+        console.log(name);//局部作用域在全局中访问不到，但var必须写。注意ES6的会计作用域
+
+        //作用域链
+        var x = 100;
+        function fn2() {
+            var y = 200;
+            function fn3() {
+                var z = 300;
+                console.log(x);
+                console.log(y);
+                console.log(z);
+            }
+            fn3()
+        }
+        fn2();
+
+        //闭包的使用：函数作为返回值
+        function F1() {
+            var q = 100;
+            return function () {
+                console.log(q)//闭包的自由变量会去定义时的作用域中寻找
+            }
+        }
+        var f1 = F1();
+        var q = 200;
+        f1();
+        //闭包的使用：函数作为参数传递给另一个函数
+        function F2(fn) {
+            var q = 200;
+            fn();
+        }
+        F2(f1);
+        //创建10a标签，点击时弹出对应的序号。
+        var i;
+        for(i=0;i<10;i++){
+            (function (i) {
+                var labelA = document.createElement('a');
+                labelA.innerHTML = i+'<br>';
+                labelA.addEventListener('click',function (e) {
+                    e.preventDefault();
+                    alert(i);
+                });
+                document.body.appendChild(labelA);
+            })(i)
+        }
+        //闭包在开发中应用的实例：判断是否是第一次登陆
+        function isFirstLoad() {
+            var list = [];
+            return function (id) {
+                if(list.indexOf(id) >= 0){
+                    return false;
+                }else{
+                    list.push(id);
+                    return true
+                }
+            }
+        }
+        var firstLoad = isFirstLoad();
+        console.log(firstLoad('lml'));
+        console.log(firstLoad('lml'));
+        console.log(firstLoad('xxs'));
     </script>
 </body>
 </html>
