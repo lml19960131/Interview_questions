@@ -2,25 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>question2</title>
+    <title>隐式类型转换与==和===的使用情况</title>
 </head>
-<body onload="getTestLi()">
-    <ul id = 'test'>
-        <li>第一行</li>
-        <li>第二行</li>
-        <li>第三行</li>
-    </ul>
+<body>
     <script>
-//        编写JS函数实现单击id为test的列表中的li时，获取其内容。
-        function getTestLi() {
-            var
-                objUlLi = document.getElementById('test').getElementsByTagName('li');
-                for(i=0,l=objUlLi.length;i<l;i++){
-                    objUlLi[i].onclick=function () {
-                        alert(this.innerHTML);
-                    };
-                }
-        }
+        //字符串的的拼接与数值计算
+        let a = 10 + 10;
+        let b = 10 + '10';
+        console.log(a);
+        console.log(b);
+
+        //==和===之间的强制类型转换
+        console.log(100 == '100');
+        console.log(100 === '1000');
+        console.log(null == undefined);
+        console.log(null === undefined);
+
+        //if之间的强制类型转换中false,其他都为false
+        if(0){console.log(true)}
+        if(''){console.log(true)}
+        if(null){console.log(true)}
+        if(undefined){console.log(true)}
+        if(NaN){console.log(true)}
+        if(false){console.log(true)}
+
+        //==和===的使用：判断一个对象的属性是否存在
+        var obj = {};
+        if(obj.a == null){console.log('不存在的')}
     </script>
 </body>
 </html>

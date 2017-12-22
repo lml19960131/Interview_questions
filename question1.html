@@ -2,15 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>question1</title>
+    <title>JS的变量类型及typeof</title>
 </head>
 <body>
     <script>
-//        有一个字符串abcd-ef-gh，请用JS将它处理成gh&ef&abcd
-        var str = 'abcd-ef-gh';
-        var arr1 = str.split('-');
-        var result = arr1.reverse().join('&');
-        alert(result);
+        //值类型：
+        var  a= 1;
+        var  b = a;
+        b = 2;
+        console.log(a);
+
+        //引用类型
+        let obj1 = {
+            x: 1,
+            y: 2
+        };
+        let obj2 = obj1;
+        obj2.x = 3;
+        console.log(obj1.x);
+
+
+        //typeof:可以判断的类型有
+        console.log(typeof 1);
+        console.log(typeof 'String');
+        console.log(typeof true);
+        console.log(typeof undefined);
+        console.log(typeof null);
+        console.log(typeof {});
+        console.log(typeof []);
+        console.log(typeof function () {});
     </script>
 </body>
 </html>
