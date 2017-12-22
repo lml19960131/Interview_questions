@@ -2,18 +2,76 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>instanceof与原型规则,原型链</title>
 </head>
 <body>
-    <div id="newsList">
-        <p class="a">1</p>
-        <p class="b">2</p>
-        <p class="c">3</p>
+    <div id="div1">
+        我是会被改变的
     </div>
     <script>
-//      找出id为newsList的HTML元素的下一个节点，并将其移动到newsList的最后
-        var ul = document.getElementById("newsList");
-        ul.appendChild(ul.firstElementChild);
+        //原型规则：引用类型都有对象的特性，即自由扩展属性
+        var obj = {};
+        obj.a = 'a';
+        var arr = [];
+        arr.a = 'a';
+        function fn() {}
+        fn.a = 'a';
+        console.log(obj.a);
+        console.log(arr.a);
+        console.log(fn.a);
+
+        //原型规则：引用类型都有_proto_属性，属性值是一个对象
+        console.log(obj.__proto__);
+        console.log(arr.__proto__);
+        console.log(fn.__proto__);
+
+        //原型规则：函数都有一个prototype属性，属性值是一个对象
+        console.log(fn.prototype);
+
+        //原型规则：所有引用类型的_proto_的值都指向它构造函数的prototype的值
+        console.log(obj.__proto__===Object.prototype);
+
+        //原型规则：当找一个引用类型的属性时，如果这个引用类型没有这个属性，那么会去它的隐式原型（构造函数的显示原型）中去找
+        function Foo(name, age) {
+            this.name = name
+        }
+        Foo.prototype.alertName= function () {
+            alert(this.name)
+        };
+        var f = new Foo('lml');
+        f.printName = function () {
+            console.log(this.name)
+        };
+        f.printName();
+        f.alertName();
+        f.toString(); //相当与去Foo._proto_(Foo.prototype)._proto_(Object)中去找
+
+        //instanceof
+        console.log(f instanceof Foo);
+        console.log(arr instanceof Array);
+
+        //编写一个原型链继承的例子：
+        function Elem(id) {
+            this.elem = document.getElementById(id)
+        }
+        Elem.prototype.html = function (val) {
+            var elem = this.elem;
+            if (val){
+                elem.innerHTML = val
+            }else {
+                return elem.innerHTML
+            }
+        };
+        Elem.prototype.on = function (type, fn) {
+          var elem = this.elem;
+          elem.addEventListener(type, fn)
+        };
+        var div1 = new Elem('div1');
+        div1.html('<p>hello world，我已经被改变了，同时你发没发现一个问题，' +
+            '那么就是JS脚本会阻塞页面的运行，也就是单线程的问题。</p>');
+        div1.on('click', function(){
+            alert('clicked')
+        })
     </script>
 </body>
 </html>
