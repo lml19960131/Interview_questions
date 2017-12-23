@@ -2,19 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>异步和单线程</title>
 </head>
 <body>
+    <button id="btn1">click</button>
     <script>
-        var a = 1;
-        function c() {
-            alert(a);
-            if(!a){
-                var a = 2;
-            }
-            alert(a);
-        }
-        c();
+        //使用异步的第一个场景：定时任务
+        console.log(1);
+        setTimeout(function () {
+            console.log(2)
+            });
+        console.log(3);
+        setTimeout(function () {
+            console.log(4);
+        },1000);
+        console.log(5);//打印1 3 5 2 4
+
+        //使用异步的第二个场景：ajax请求
+
+        //使用异步的第三个场景：动态加载img图片
+        console.log('start');
+        var img = document.createElement('img');
+        img.onload = function () {
+            console.log('loaded')
+        };
+        img.src = 'https://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d&word=%E6%BB%91%E7%A8%BD&step_word=&hs=2&pn=0&spn=0&di=21872727910&pi=0&rn=1&tn=baiduimagedetail&is=0%2C0&istype=0&ie=utf-8&oe=utf-8&in=&cl=2&lm=-1&st=undefined&cs=1496712493%2C47865408&os=1719860101%2C1491408641&simid=3187335101%2C3628473455&adpicid=0&lpn=0&ln=1979&fr=&fmq=1514019240228_R&fm=&ic=undefined&s=undefined&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&ist=&jit=&cg=&bdtype=0&oriquery=&objurl=http%3A%2F%2Fn1.itc.cn%2Fimg8%2Fwb%2Frecom%2F2017%2F01%2F26%2F148542515062415458.PNG&fromurl=ippr_z2C%24qAzdH3FAzdH3Fooo_z%26e3Bf5i7_z%26e3Bv54AzdH3FwAzdH3F8dc8b0lc9_8890ma&gsm=0&rpstart=0&rpnum=0';
+        console.log('end');
+
+        //使用异步的第四个场景：事件绑定
+        console.log('start');
+        var btn1 = document.getElementById('btn1');
+        btn1.addEventListener('click',function () {
+            console.log('clicked');
+        });
+        console.log('end')
     </script>
 </body>
 </html>
