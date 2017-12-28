@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //基本用法：
+        {
+            let a = 1;
+            var b = 2;
+        }
+        console.log(a); //报错
+        console.log(b); //2
+
+
+        //变量提升：
+        console.log(c); //undefined
+        var c = 3;
+        console.log(d); //报错
+        let d = 4;
+
+
+        //暂时性死区：TDZ
+        {
+            e = 'abc'; // ReferenceError
+            console.log(e); // ReferenceError
+
+            let e; // TDZ结束
+            console.log(e); // undefined
+
+            e = 123;
+            console.log(e); // 123
+        }
+
+
+        //不允许重复声明：
+        function func() {
+            let f = 10;
+            let g = 1;
+        }//报错
+    </script>
+</body>
+</html>

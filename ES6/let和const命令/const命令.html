@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //基本用法：一旦声明不得更改
+        const PI = 3.1415;
+        console.log(PI);// 3.1415
+        PI = 3;// TypeError: Assignment to constant variable.
+
+        //本质：保证变量指向的指针不被更改，但是对于引用类型的数据结构的改变不能保证
+        const foo = {};
+        foo.prop = 123;
+        console.log(foo.prop);//123
+        foo = {}; // TypeError: "foo" is read-only
+
+
+    </script>
+</body>
+</html>

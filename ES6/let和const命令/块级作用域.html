@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //使用块级作用域的场景：内层变量被外层覆盖
+        var a = new Date();
+
+        function f() {
+            console.log(a);
+            if (false) {
+                var a = 'hello world';
+            }
+        }
+        f(); // undefined
+
+
+        //使用块级作用域的场景：用于计数的循环变量泄露
+        var string = 'hello world';
+        for(var i = 0; i< string.length; i++){
+            console.log(s[i])
+        }
+        console.log(i); //11
+
+
+        //使用let的场景：
+        function f1() {
+            let n = 5;
+            if (true) {
+                let n = 10;
+            }
+            console.log(n); // 5
+        }
+
+
+    </script>
+</body>
+</html>
