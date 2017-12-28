@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //includes(),startWith(),endsWith()
+        let s = 'hello world!';
+        s.includes('w');//true 判断字符串是否包含参数字符串
+        s.startsWith('hello'); //true 判断是否以参数字符串开头
+        s.endsWith('!'); //true 判断是否以参数字符串结尾
+        s.includes('a'); //false
+        //为其指定第二个参数
+        s.includes('hello', 6); //false 第二参数表示开始搜索的位置
+        s.startsWith('world', 6); //true 第二参数也表示开始搜索的位置
+        s.endsWith('hello', 5); //true 第二个参数表示针对n个字符串
+
+
+        //repeat()
+        let newX = 'x'.repeat(4);
+        console.log(newX); //'xxxx'
+        let newL = 'lml'.repeat(0);
+        console.log(newL); //''
+
+
+        //padStart(), padEnd()
+        let newY = 'y'.padStart(3, 'x');
+        console.log(newY); //xxy
+        let newZ = 'z'.padEnd(3, 'x');
+        console.log(newZ); //zxx
+
+    </script>
+</body>
+</html>
