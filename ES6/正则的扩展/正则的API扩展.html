@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        // RegExp构造函数
+        let regex = new RegExp('xyz', 'i');
+        let regex1 = new RegExp(/xyz/i);
+        let regex2 = new RegExp(/xyz/ig, 'i');//ES5中会报错，ES6中i会覆盖ig
+
+        //y修饰符
+        let s = 'aaa-aa-a';
+        let r1 = /a+/g;
+        let r2 = /a+/y;
+        r1.exec(s);
+        r2.exec(s);
+
+        //sticky属性:判断是否设置了y修饰符
+        console.log(r2.sticky); //true
+        console.log(r1.sticky);// false
+
+        //flags属性:返回正则表达式的修饰符
+        console.log(regex.flags); //i
+    </script>
+</body>
+</html>
