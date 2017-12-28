@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //对象的解构赋值：基本用法
+        let {a, b} = {a : 'a', b : 'b'};
+        console.log(a); //a
+        console.log(b); //b
+
+        //对象的结构赋值不是根据顺序排列而是根据变量与属性同名
+        let {c, d} = {d : 'd', c : 'c'};
+        console.log(c); //c
+        console.log(d); //d
+
+
+    </script>
+</body>
+</html>
