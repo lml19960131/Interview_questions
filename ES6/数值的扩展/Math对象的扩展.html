@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //Math.trunc():用于去除一个数的小数，返回整数
+        Math.trunc(1.1); //1
+        Math.trunc(1.9); //1
+        Math.trunc(-1.1); //1
+        Math.trunc(-1.9); //1
+        Math.trunc('123.456'); //123
+        Math.trunc(true); //1
+        Math.trunc(false); //0
+        Math.trunc(NaN); //NaN
+        Math.trunc('foo'); //NaN
+
+
+//      Math.sign()：用于判断一个数的正负还是0
+        Math.sign(1); // +1 正数返回+1
+        Math.sign(-1); //-1 负数返回-1
+        Math.sign(0); //0 0返回0
+        Math.sign(-0); //-0 -0返回-0
+        Math.sign(NaN); //NaN 其他值返回NaN
+
+    </script>
+</body>
+</html>
