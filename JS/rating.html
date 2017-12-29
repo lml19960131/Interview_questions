@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <input id="input1" type="text" placeholder="请输入1-5之间的数字">
+        <button id="btn1"  onclick="rating(input1.value)">click me</button>
+        <p id="rating"></p>
+    </div>
+    <script>
+        btn1 = document.getElementById('btn1');
+        input1 = document.getElementById('input1');
+        rat1 = document.getElementById('rating');
+        function rating(rate) {
+          rat1.innerHTML = '★★★★★☆☆☆☆☆'.slice(5 - rate, 10 - rate);
+
+        }
+    </script>
+</body>
+</html>
