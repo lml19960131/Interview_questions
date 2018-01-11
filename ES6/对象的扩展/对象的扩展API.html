@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //属性的简写:ES6允许止血属性名不写属性值，这时属性值和属性名相同
+        function f(x, y) {
+            return {x, y};
+        }
+        console.log(f(1, 2)); //Object {x: 1, y: 2};
+
+        //Object.is()用于比较两个值是否相等，它与严格相等的行为基本一致，但也有不同
+        console.log(Object.is('a', 'a')); //true
+        console.log(Object.is([], [])); //false
+        console.log(Object.is(+0, -0)); //false,不同之处1
+        console.log(+0 === -0); //true
+        console.log(Object.is(NaN, NaN)); //true
+        console.log(NaN === NaN); //false,不同之处2
+
+        //Object.assign()用于将源对象的所有可枚举属性复制到目标对象，接受2参，1：目标对象；2：源对象
+        let target = {a: 1}; //目标对象
+        let source1 = {b: 2}; //源对象1
+        let source2 = {c:3 }; //源对象2
+        Object.assign(target, source1, source2);
+        console.log(target);//会改变原来的对象的属性
+    </script>
+</body>
+</html>
