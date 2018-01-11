@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //Array.from()方法：将类似数组的对象和可遍历对象转为真正的数组
+        let arrayLike1 = {
+            '0': 'a',
+            '1': 'b',
+            '2': 'c',
+            length: 3
+        };
+        let arr1 = [].slice.call(arrayLike1);//ES5 ['a', 'b', 'c']
+        let arr2 = Array.from(arrayLike1);//ES6 ['a', 'b', 'c']
+        console.log(arr1);
+        console.log(arr2);
+
+        //Array.of()用于将一组值转化为数值
+        let arr3 = Array.of(1, 2, 3);
+        console.log(arr3);
+
+        //copyWithin()方法：在当前数组内部将指定位置的成员复制到其他位置，返回当前数组
+        let oldArr1 = [1, 2, 3, 4, 5,];
+        let oldArr2 = [1, 2, 3, 4, 5,];
+        let newArr1 = oldArr1.copyWithin(0, 3);
+        console.log(oldArr1);//此方法会改变原数组
+        console.log(newArr1);
+        let newArr2 = oldArr2.copyWithin(0, 3, 4);
+        //方法接受三个参数：第一个时从该位置开始替换数据，第二个从该位置开始读取数据，对三个时到该位置停止读取数据
+        console.log(newArr2);
+
+        //find()和findIndex()方法：
+        //find()用于找出第一个符合条件的数组成员，参数时一个回调函数，所有元素依次执行回调函数，知道找出第一个返回值为true的成员
+        let item1 = [1, 2, 3, 4, 5,].find((n) => n > 4);
+        console.log(item1);
+        //findIndex()用于返回符合条件的数组成员的位置
+
+        //fill()方法用于填充数组
+        new Array(3).fill(6);//666
+        new Array(3).fill(6, 1, 2);//还接受三个参数：第一个时用来填充的数值，二是起始位置，三是结束位置
+
+        //数组的新遍历方法：entries(),keys()和values()
+        for(let index of ['a', 'b'].keys()){
+            console.log(index);
+        }//用于遍历位置（键名）
+//        for(let item of ['a', 'b'].values()){
+//            console.log(item);
+//        }//用于遍历值，但是此方法主流浏览器就Safari实现了
+        for(let [index, item] of ['a', 'b'].entries()){
+            console.log(index,item);
+        }//用于遍历键值对
+
+        //includes()返回一个布尔值，判断数组是否包含指定的值
+        console.log([1, 2, 3,].includes(1)); //true
+        console.log([1, 2, 3,].includes(4)); //false
+        console.log([1, 2, 3,].includes(3, 1)); //true 接受第二个参数：搜索的起始位置
+    </script>
+</body>
+</html>
