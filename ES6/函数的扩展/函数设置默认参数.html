@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //ES5为函数设置默认参数
+        function log1(x, y){
+            y = y ||'world';
+            console.log(x, y);
+        }
+        log1('hello'); //hello world
+        log1('hello', 'china'); //hello china
+        //ES6为函数设置默认参数
+        function log2(x, y = 'world') {
+            console.log(x, y);
+        }
+        log2('hello'); //hello world
+        log2('hello', 'china'); //hello china
+    </script>
+</body>
+</html>

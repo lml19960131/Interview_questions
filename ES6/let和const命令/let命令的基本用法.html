@@ -6,23 +6,24 @@
 </head>
 <body>
     <script>
-        //基本用法：
+        //基本用法：用法和var类似，但是所声明的变量只在let命令所在的代码块中有效
         {
             let a = 1;
             var b = 2;
+            console.log(a); //不报错
         }
         console.log(a); //报错
         console.log(b); //2
 
 
-        //变量提升：
+        //变量提升：不存在变量提升
         console.log(c); //undefined
         var c = 3;
         console.log(d); //报错
         let d = 4;
 
 
-        //暂时性死区：TDZ
+        //暂时性死区：存在TDZ，在代码块内，使用let命令声明之前变量是不可用的
         {
             e = 'abc'; // ReferenceError
             console.log(e); // ReferenceError
@@ -35,11 +36,23 @@
         }
 
 
-        //不允许重复声明：
-        function func() {
-            let f = 10;
-            let g = 1;
-        }//报错
+        //不允许重复声明：不允许在相同作用域内重复声明变量
+        function test1() {
+            let a = 1;
+            let a = 2; //报错
+        }
+        function test2() {
+            let a = 1;
+            var a = 2; //报错
+        }
+        function test3(argument1) {
+            let argumnet1 = 1; //报错，不能在函数内部重复声明参数
+        }
+        function test4(argument2) {
+            {
+                let argument2 = 1; //不报错
+            }
+        }
     </script>
 </body>
 </html>

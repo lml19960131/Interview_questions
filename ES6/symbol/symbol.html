@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Symbol</title>
+</head>
+<body>
+    <script>
+        //ES6:symbol
+        let s = Symbol('a');//symbol 不能使用new来定义
+        console.log(typeof s);
+        console.log(s);
+
+        //symbol函数可以接受一个字符串作为参数，表示对Symbol实例的描述
+        let s1 = Symbol('foo');
+        let s2 = Symbol('bar');
+        s1.toString();
+        s2.toString();
+
+        //如果Symbol的参数是一个对象就会调用该对象的toString方法。
+        const obj = {
+            toString() {
+                return 'abc';
+            }
+        };
+        const sym =Symbol(obj);
+        console.log(sym);
+        //没有参数的情况。
+        let s3 = Symbol();
+        let s4 = Symbol();
+        console.log(s3 === s4);
+        //有参数的情况
+        let s5 = Symbol('lml');
+        let s6 = Symbol('lml');
+        console.log(s5 === s6);
+
+        //symbol值不能与其他类型的值进行运算，会产生错误
+        let sym1 = Symbol('My symbol');
+        console.log('your symbol is' + sym1);
+        console.log('your symbol is ${sym}');
+        
+    </script>
+</body>
+</html>
