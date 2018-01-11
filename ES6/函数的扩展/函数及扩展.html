@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //ES5为函数设置默认参数
+        function log1(x, y){
+            y = y ||'world';
+            console.log(x, y);
+        }
+        log1('hello'); //hello world
+        log1('hello', 'china'); //hello china
+        //ES6为函数设置默认参数
+        function log2(x, y = 'world') {
+            console.log(x, y);
+        }
+        log2('hello'); //hello world
+        log2('hello', 'china'); //hello china
+
+        //函数的length属性:返回没有指定默认值的参数个数
+        console.log((function log3(x, y = 1) {}).length); //1
+        console.log((function log4(x, y) {}.length)); //2
+
+        //rest参数：用于获取函数多余的参数，形式为...变量名，是一个数组
+        function add(...values) {
+            let sum = 0;
+            for(item of values){
+                sum += item;
+            }
+            return sum;
+        }
+        console.log(add(1, 2, 3,)); //6
+
+        //扩展运算符：...将一个数组转换成用空格分隔的参数序列
+        console.log(...[1, 2, 3,]); //1 2 3
+        console.log(1, ...[2, 3, 4,], 5); //1 2 3 4 5
+
+        //name属性：返回函数的名称
+        function foo() {}
+        console.log(foo.name); //foo
+        let bar = function () {};
+        console.log(bar.name); //bar
+
+        //箭头函数:箭头函数的this对象就是定义时所在的对象，而不是使用时所在的对象
+        //函数绑定:采用双冒号::来替代 apply call bind
+    </script>
+</body>
+</html>
