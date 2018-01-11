@@ -7,6 +7,7 @@
 <body>
     <script>
         //对象的解构赋值：基本用法
+        //实际下面是对对象的简写：let {a: a, b: b}
         let {a, b} = {a : 'a', b : 'b'};
         console.log(a); //a
         console.log(b); //b
@@ -16,7 +17,9 @@
         console.log(c); //c
         console.log(d); //d
 
-
+        //对象的解构赋值是先找到同名属性然后在赋给对应的变量
+        let{foo: bar} = {foo: 'aaa'};
+        console.log(bar); //aaa
     </script>
 </body>
 </html>
