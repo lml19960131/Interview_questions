@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //proxy的构造函数
+        let proxy = new Proxy({}, {
+            get: function (target, property) {
+                return 666;
+            }
+        });
+        console.log(proxy.a);//666改变了proxy中get的行为
+        console.log(proxy.b);//666
+
+
+        //实例：通过元编程拦截读取操作
+        let person = {
+            name: 'lml'
+        };
+        let proxy1 = new Proxy({}, {
+            get: function (target, property) {
+                if (property in target){
+                    return target[property];
+                }else{
+                    throw new ReferenceError('没这个人');
+                }
+            }
+        });
+        //拦截某个属性的复制操作
+        let validator = {
+            set: function (obj, prop, value) {
+                if(prop === 'age'){
+                    if(!Number.isInteger(value)){
+                        throw new ReferenceError('请示一个整数')
+                    }
+                    if(value>200){
+                        throw new ReferenceError('请问您是妖怪？')
+                    }
+                }
+                obj[prop] = value;
+            }
+        };
+        let person2 = new Proxy({}, validator);
+        person2.age = 100;
+        console.log(person2.age);
+        person2.age = 201; //报错
+
+    </script>
+</body>
+</html>
