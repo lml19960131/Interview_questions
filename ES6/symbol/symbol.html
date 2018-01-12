@@ -36,9 +36,32 @@
 
         //symbol值不能与其他类型的值进行运算，会产生错误
         let sym1 = Symbol('My symbol');
-        console.log('your symbol is' + sym1);
-        console.log('your symbol is ${sym}');
-        
+//        console.log('your symbol is' + sym1);
+//        console.log('your symbol is ${sym}');
+
+
+        //作为属性名的symbol
+        let mySymbol = Symbol();
+        let a = {
+            [mySymbol]: 'lml' //作为属性名必须用方括号括起来
+        };
+        console.log(a[mySymbol]); //lml
+
+        //属性名的遍历：symbol不会出现在for...in、for...of循环中，也不会被object.keys()遍历
+        let foo = Symbol('foo');
+        let obj2 = {
+            [foo] : 'world'
+        };
+        Object.getOwnPropertySymbols(obj2); //获取symbol属性名需要采用本方法
+
+        //Symbol.for()和Symbol.keyFor()
+        //需要重新使用同一个Symbol时，采用Symbol.for方法
+        let x = Symbol.for('foo');
+        let y = Symbol.for('foo');
+        console.log(x === y);
+
+
+        //内置的symbol：Symbol.hasInstance  Symbol.isConcatSpreadable....
     </script>
 </body>
 </html>
