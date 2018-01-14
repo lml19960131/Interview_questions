@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <script>
+        //Map类似与对象，也是键值对的组合，但是Map的键可以是各种类型的值
+        let m = new Map();
+        let o = {
+            p: 'hello, world'
+        };
+        m.set(o, 'content');//使用set方法把o对象当作m对象的一个键
+        console.log(m.get(o));//获取一个元素
+        //Map接受数组作为参数，数组中有两个成员分别表示键值对，
+        let map = new Map([['name', 'lml'],['title', 'ES6']]);
+        console.log(map.size);//size属性是Map中元素的数目
+        console.log(map.has('name'));//判断一个元素是否存在
+        map.delete('title');//delete用于删除元素
+        map.set(year, '20');
+        map.set(year, '21');//重复声明时后一个的值会覆盖前一个
+
+        //遍历器和遍历方法同Set一样
+    </script>
+</body>
+</html>
