@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //for...of循环
+        //数组
+        const arr = ['red', 'green', 'blue'];
+        let iterator = arr[Symbol.iterator]();
+        for(let v of arr){
+            console.log(v); //red green blue
+        }
+        for(let v of iterator){
+            console.log(v); //red green blue
+        }
+        //代替数组的forEach方法
+        arr.forEach(function (element) {
+            console.log(element); //red green blue
+        });
+        for(let v of arr){
+            console.log(v); //red green blue
+        }//for...of用于读取值
+        arr.forEach(function (element,index) {
+            console.log(index); //0 1 2
+        });
+        for(let a in arr){
+            console.log(a); // 0 1 2
+        }//for...in用于读取键名
+
+        //Set和Map结构：原生支持iterator接口，可以直接使用for...of循环
+        let engines = new Set(['lml', 'hqy', 'hxm']);
+        for(let he of engines){
+            console.log(he) //lml, hqy, hxm
+        }
+
+        //计算生成的数据结构value:遍历键值,keys:遍历键名,entries:遍历键值对
+        let arr2 = ['a', 'b', 'c'];
+        for(let pair of arr2.entries()){
+            console.log(pair); //Array [ 0, "a" ],Array [ 1, "b" ],Array [ 2, "c" ]
+        }
+
+        //类似数组的对象:字符串，DOM的NodeList对象，arguments对象
+        let str = 'hello';
+        for(let s of str){
+            console.log(s); // h e l l o
+        }//其他相同
+
+        //对象：对于一般的对象，for...of结构不能直接使用，但是可以使用for...in循环遍历键名
+        let es6 = {
+            edition: 6,
+            committee: 'TC39',
+            standard: 'ESMA-262'
+        };
+        for(e in es6){
+            console.log(e); //edition committee standard
+        }
+        //如果要时想要循环可以使用Generator函数把对象包装
+    </script>
+</body>
+</html>

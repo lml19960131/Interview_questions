@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //Iterator的遍历过程
+        function makeIterator(array) {
+            let nextIndex = 0;
+            return {
+                next: function () {
+                    return nextIndex < array.length ?
+                        {value: array[nextIndex++], done: false}:
+                        {value: undefined, done: undefined}
+                }
+            }
+        } //创建遍历器
+        let it = makeIterator(['a'], ['b']); //创建指针对象
+        console.log(it.next()); //a，调用指针对象的next方法
+        console.log(it.next()); //b，再次调用指针对象的next方法
+        console.log(it.next()); //undefined 知道数据结构的结束位置
+
+
+        //遍历器无限调用
+        function idMaker() {
+            let index = 0;
+            return {
+                next: function () {
+                    return {value: index++, done:false};
+                }
+            }
+        }
+        let it2 = idMaker();
+        console.log(it2.next().value); //0
+        console.log(it2.next().value); //1
+        console.log(it2.next().value); //2
+
+
+        //数据结构的默认iterator接口：数组、类似数组的对象、Set和Map结构
+        let arr = ['a', 'b', 'c'];
+        let iter = arr[Symbol.iterator]();
+        console.log(iter.next());  //Object { value: "a", done: false }
+        console.log(iter.next());  //Object { value: "b", done: false }
+        console.log(iter.next());  //Object { value: "c", done: false }
+        console.log(iter.next());  //Object { value: undefined, done: false }
+
+        //调用iterator接口的场景
+        //解构赋值
+        let set = new Set().add('a').add('b').add('c');
+        let [x, y] = set;
+        console.log(x); //a
+        console.log(y); //b
+
+        //扩展运算符...
+        let str = 'hello';
+        console.log([...str]); //Array [ "h", "e", "l", "l", "o" ]
+        let arr2 = ['b', 'c'];
+        console.log(['a', ...arr2, 'd']); //Array [ "a", "b", "c", "d" ]
+    </script>
+</body>
+</html>
