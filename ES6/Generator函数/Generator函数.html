@@ -78,6 +78,20 @@
         //应用1：异步操作：把异步操作系额在yield语句里面，等到调用next方法时在往后执行
         //应用2：控制流管理：
         //应用3：部署iterator接口
+        function* iterEntries(obj) {
+            let keys = Object.keys(obj);
+            for(let i=0; i<keys.length; i++){
+                let key = keys[i];
+                yield [key, obj[key]];
+            }
+        }
+        let myObj = {
+            foo: 1,
+            bar: 2
+        };
+        for(let [key, value] of iterEntries(myObj)){
+            console.log(key, value)
+        }
         //应用4：作为数据结构
     </script>
 </body>
