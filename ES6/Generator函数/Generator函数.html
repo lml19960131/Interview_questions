@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //Generator函数:调用后函数并不执行，而是指向遍历器对象，必须使用next方法调用
+        function* helloWorldGenerator() {
+            yield 'hello';
+            yield 'world';
+            return 'ending';
+        }
+        let hwg = helloWorldGenerator();
+        console.log(hwg.next()); //Object { value: "hello", done: false }
+        console.log(hwg.next()); //Object { value: "world", done: false }
+        console.log(hwg.next()); //Object { value: "ending", done: true }
+        console.log(hwg.next()); //Object { value: undefined, done: true }
+
+        //yield语句和return语句的区别：一个函数可以多次执行yield但是只能有一个return
+        //yield语句不能在普通函数中使用，否则会报错
+//        （function aa() {
+//            yeild: 1;
+//        }();
+
+        //next方法的参数：
+        function* f() {
+            for(let i = 0; true; i++){
+                let reset = yield i;
+                if(reset) {i = -1}
+            }
+        }
+        let g = f();
+        console.log(g.next()); //Object { value: 0, done: false }
+        console.log(g.next()); //Object { value: 1, done: false }
+        console.log(g.next(true)); //Object { value: 0, done: false }通过next方法可以在generator函数运行后继续相函数体内部注入值。
+
+        function* foo(x) {
+            let y = 2 * (yield (x + 1));
+            let z = yield (y / 3);
+            return (x + y +z);
+        }
+        let a = foo(5);
+        console.log(a.next()); //Object { value: 6, done: false }yield后面的值才是真正的返回值
+        console.log(a.next()); //Object { value: NaN, done: false }第二次运行不带参数导致y的值等于2*undefined为NaN
+        console.log(a.next()); //Object { value: NaN, done: false }第三次运行不带参数导致z的值等于5+NAN+undefined也为NaN
+        let b =foo(5);
+        console.log(b.next());
+        console.log(b.next(12)); //给next指定参数后，是将上一次的yield赋值，next(12)是将上次的yield值赋值为12
+        console.log(b.next(13)); //next(13)是将上次的yield赋值为13
+
+        //for...of循环自动遍历generator函数
+        function* foo2() {
+            yield 1;
+            yield 2;
+            yield 3;
+            yield 4;
+            yield 5;
+            yield 6;
+        }
+        for(let v of foo2()){
+            console.log(v); //return语句的返回值不包括在for...of循环中
+        }
+
+//        Generator.prototype.return()，可以返回给定的值，并终结Generator的遍历
+        function* gen() {
+            yield 1;
+            yield 2;
+            yield 3;
+        }
+        let g2 = gen();
+        console.log(g2.next()); //Object { value: 1, done: false }
+        console.log(g2.return('foo')); //Object { value: "foo", done: true }如果return不提供参数则返回undefined
+        console.log(g2.next()); //Object { value: undefined, done: true }
+
+
+        //应用1：异步操作：把异步操作系额在yield语句里面，等到调用next方法时在往后执行
+        //应用2：控制流管理：
+        //应用3：部署iterator接口
+        //应用4：作为数据结构
+    </script>
+</body>
+</html>
