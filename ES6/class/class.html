@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //通过class定义类
+        class point {
+            constructor(x, y){
+                this.x = x;
+                this.y = y;
+            }
+            toString() {
+                return'(' + this.x + ',' + this.y + ')';
+            }
+        }
+        console.log(typeof point); //function ES6的类可以看作构造函数的写法
+        console.log(point === point.prototype.constructor); //true 类的数据类型就是函数。类本身指向构造函数
+        //实例化对象
+        let point1 = new point(1, 2);//必须使用new实例化对象
+        console.log(point1.toString()); //调用class类的方法
+
+
+        //class的继承:通过extends方法进行继承
+        class ColorPoint extends point{
+            constructor(x, y, color){
+                super(x, y); //调用父类的constructor(x, y)
+                this.color = color;
+            }
+            toString(){
+                return this.color + ' ' + super.toString(); //调用父类的toString()
+            }
+        }//子类必须使用super方法，否则子类得不到this对象，在调用super后才能使用this关键字
+
+    </script>
+</body>
+</html>
