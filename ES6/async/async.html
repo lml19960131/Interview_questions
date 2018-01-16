@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //async:就是generator函数的语法糖,将generator函数的*替换成async，将yield替换成await
+        let readFile = function (fileName) {
+            return new Promise(function (resovle, reject) {
+                fs.readFile(fileName, function (error, data) {
+                    if (error) reject(error);
+                    resovle(data);
+                })
+            })
+        };
+
+        //使用generator函数:需要使用next手动调用
+        let gen = function* () {
+            let f1 = yield readFile('');
+            let f2 = yield readFile('');
+            console.log(f1.toString());
+            console.log(f2.toString());
+        };
+        //使用async:自动执行，输出最后结果不需要手动调用，返回值是一个promise对象
+        let asy = async function () {
+            let f1 = await readFile('');
+            let f2 = await readFile('');
+            console.log(f1.toString());
+            console.log(f2.toString());
+        };
+
+        //async函数的用法
+        function timeout(ms) {
+            return new Promise((resolve) => {
+                setTimeout(resolve, ms);
+            });
+        }
+        async function asyncPrint(value, ms) {
+            await timeout(ms);
+            console.log(value)
+        }
+        asyncPrint('lml', 100);
+    </script>
+</body>
+</html>
