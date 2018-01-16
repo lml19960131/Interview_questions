@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p id="img">1111</p>
+    <script>
+        //Promise
+        function timeout(ms) {
+            return new Promise((resolve, reject) => {
+                setTimeout(resolve, ms, 'done');
+            });
+        }
+        timeout(100).then((value) => {
+            console.log(value);
+        });
+        function loadImageAsync(url) {
+            let promise = new Promise(function (resolve, reject) {
+                let img = new Image();
+                img.onload = function () {
+                    resolve(img);
+                };
+                img.onerror = function () {
+                    reject(new Error('Could not load this img'))
+                };
+                img.src = url;
+            });
+            return promise;
+        }
+
+        //Promise实现ajax
+        let getJSON = function (url) {
+            let promise = new Promise(function (resolve, reject) {
+                let client = new XMLHttpRequest();
+                client.open('GET', url);
+                client.onreadystatechange = handler;
+                client.responseType = 'json';
+                client.setRequestHeader('Accept', 'application/json');
+                client.send();
+                function handler() {
+                    if (this.readyState !== 4 ){
+                        return
+                    }
+                    if (this.status === 200){
+                        resolve(this.response);
+                    } else {
+                        reject(new Error(this.statusText));
+                    }
+                }
+            });
+            return promise;
+        };
+        getJSON('Promise/posts.json').then(function (json) {
+            console.log('Contents:' + json)
+        }, function (error) {
+            console.log('出错',error)
+        })
+    </script>
+</body>
+</html>
