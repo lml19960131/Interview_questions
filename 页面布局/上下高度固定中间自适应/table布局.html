@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .layout.table .top-center-bottom{
+            display: table;
+            width: 100%;
+        }
+        .layout.table .top-center-bottom>header div footer{
+            display: table-cell;
+        }
+        .top{
+            height: 100px;
+            background-color: red;
+        }
+        .center{
+            background-color: green;
+        }
+        .bottom{
+            height: 100px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <section class="layout table">
+        <article class="top-center-bottom">
+            <header class="top">这是页面的上部</header>
+            <div class="center">这是页面的主体</div>
+            <footer class="bottom">这是页面的底部</footer>
+        </article>
+    </section>
+</body>
+</html>

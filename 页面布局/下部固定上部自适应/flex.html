@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .layout.flex .top-bottom{
+            display: flex;
+            flex-direction: column;
+        }
+        .top{
+            flex: 1;
+            background-color: red;
+        }
+        .bottom{
+            height: 100px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <section class="layout flex">
+        <article class="top-bottom">
+            <div class="top">上部</div>
+            <div class="bottom">下部</div>
+        </article>
+    </section>
+</body>
+</html>

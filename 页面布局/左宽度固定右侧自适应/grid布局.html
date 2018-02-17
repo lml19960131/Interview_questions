@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            min-height: 300px;
+        }
+        .layout.grid .left-right{
+            display: grid;
+            grid-template-columns: 300px auto;
+        }
+        .left{
+            background-color: red;
+        }
+        .right{
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <section class="layout grid">
+        <article class="left-right">
+            <div class="left">左侧</div>
+            <div class="right">右侧</div>
+        </article>
+    </section>
+</body>
+</html>

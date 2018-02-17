@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <section class="layout absolute">
+        <style>
+            .layout.absolute .top-center-bottom>header div footer{
+                position: absolute;
+            }
+            .layout.absolute .top{
+                top: 0;
+                height: 100px;
+                background-color: red;
+            }
+            .layout.absolute .center{
+                top: 100px;
+                background-color: green;
+            }
+            .layout.absolute .bottom{
+                bottom: 0;
+                height: 100px;
+                background-color: blue;
+            }
+        </style>
+        <article class="top-center-bottom">
+            <header class="top">这是页面的上部</header>
+            <div class="center">这是页面的主体</div>
+            <footer class="bottom">这是页面的底部</footer>
+        </article>
+    </section>
+</body>
+</html>

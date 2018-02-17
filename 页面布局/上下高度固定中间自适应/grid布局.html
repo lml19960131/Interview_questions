@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .top-center-bottom{
+            display: grid;
+            height: 100%;
+            grid-template-columns: 100%;
+            grid-template-rows: 100px auto 100px;
+        }
+        .top{
+            background-color: red;
+        }
+        .center{
+            background-color: green;
+        }
+        .bottom{
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <section class="layout grid">
+        <article class="top-center-bottom">
+            <header class="top">这是页面的上部</header>
+            <div class="center">这是页面的主体</div>
+            <footer class="bottom">这是页面的底部</footer>
+        </article>
+    </section>
+</body>
+</html>
