@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //类的声明
+        function animal() {
+            this.name = 'name';
+        }
+        class animal2{
+            constructor () {
+                this.name = name;
+            }
+        }
+        //实例化
+        console.log(new animal(), new animal2());
+
+
+        //类的继承：借助构造函数
+        function Parent1() {
+            this.name = 'parent1'
+        }
+        function Child1() {
+            Parent1.call(this); //apply也可以,将父级构造函数指向子类
+            this.type = 'child1';
+        }
+        Parent1.prototype.say = function () {
+            console.log('say hi')
+        };//通过构造函数实现继承只能继承父类，但是不能继承父类原型对象上的方法，只能实现部分继承
+        console.log(new Child1()); //没有say方法
+
+
+        //类的继承：借助原型链实现继承
+        function Parent2() {
+            this.name  = 'name';
+            this.arr = [1, 2, 3]
+        }
+        function Child2() {
+            this.type = 'child2';
+        }
+        Child2.prototype = new Parent2(); //通过
+        console.log(new Child2());
+        let s1 = new Child2();
+        let s2 = new Child2();
+        console.log(s1.arr, s2.arr); //在一个对象上更改会造成全部更改，原型链中的原型对象共用。
+        s1.arr.push(4);
+
+        //类的继承：组合是继承,最通用的方式
+        function Parent3() {
+            this.name = 'parent3';
+            this.arr = [1, 2, 3];
+        }
+        function Child3() {
+            Parent3.call(this); //父类构造函数执行第一次
+            this.type = 'child3';
+        }
+        Child3.prototype = new Parent3(); //父类构造函数执行第二次
+        let s3 = new Child3();
+        let s4 = new Child3();
+        s3.arr.push(4);
+        console.log(s3.arr, s4.arr);//避免了原型上的对象共用。但实例化子类时父级构造函数执行了两次
+
+        //组合继承的优化：
+        function Parent4() {
+            this.name = 'parent4';
+            this.arr = [1, 2, 3];
+        }
+        function Child4() {
+            Parent4.call(this); //父类构造函数执行第一次
+            this.type = 'child4';
+        }
+        Child4.prototype = Parent4.prototype; //把父级构造函数体内的属性和方法拿到，还可能把父级原型对象的属性和方法拿到
+        let s5 = new Child4();
+        let s6 = new Child4();
+        s5.arr.push(4);
+        console.log(s5.arr, s6.arr);
+        console.log(s5 instanceof Child4);
+        console.log(s5 instanceof Parent4); //不能区分s5是通过Child4还是Parent4直接实例的
+        console.log(s5.constructor); //会指向父类Parent4，组合是继承也存在上述问题
+
+        //组合是继承的优化2：
+        function Parent5() {
+            this.name = 'parent4';
+            this.arr = [1, 2, 3];
+        }
+        function Child5() {
+            Parent5.call(this); //父类构造函数执行第一次
+            this.type = 'child4';
+        }
+        Child5.prototype = Object.create(Parent5.prototype); //通过create创建一个中间对象
+        Child5.prototype.constructor = Child5;
+        let s7 = new Child5();
+        console.log(s7 instanceof Child5);
+        console.log(s7 instanceof Parent5);
+        console.log(s7.constructor);//指向了Child5
+    </script>
+</body>
+</html>
